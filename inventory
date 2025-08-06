@@ -1,4 +1,5 @@
-splunk.home.com
+
+[linux]
 web.home.com
 plex.home.com
 jellyfin.home.com
@@ -11,7 +12,9 @@ wazuh.home.com
 stepca.home.com
 traefik.home.com
 ovrsr.home.com
-kali.home.com
-portainer.home.com
-tautulli.home.com
+
+
+[linux:vars]
+ansible_user=root
+ansible_password=paul1
 
