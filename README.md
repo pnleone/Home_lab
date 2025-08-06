@@ -1,2 +1,4 @@
 # ansible_lab
-scripts for my lab hosts
+ansible playbooks for my lab hosts
+
+
