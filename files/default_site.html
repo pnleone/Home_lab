@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🧪 Home Lab Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #161600;
+      margin: 0;
+      padding: 40px;
+      color: #a1a1a1;
+    }
+    h1 {
+      color: #daf106;
+    }
+
+    .card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .service, .proxmox {
+      background: #28286e;
+      padding: min(5em, 8%);  
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(248, 232, 2, 0.1);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: flex-start;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+      min-height: 220px;                     /* Ensures consistent card height */
+      padding: 20px;                         /* Keeps spacing uniform */
+      flex-direction: column;               /* Vertical stacking */
+      justify-content: space-between;       /* Distributes inner content */
+    }
+
+    .service:hover, .proxmox:hover {
+      background-color: #daf106;
+      color: #28286e;
+    }
+
+    .service img, .proxmox img {
+      width: 80px;
+      height: 80px;
+      margin-right: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      
+    }
+
+    .lablogo {
+      width: 80px;
+      padding: 0px;
+      margin-bottom: 10px;
+      border-radius: 0px;
+      background-color: #e4c308;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 8px; /* Adds spacing between image and text */
+      height: 80px;        /* Scales image to match text height */
+    
+    }
+
+    .sectionlogo {
+      width: 80px;
+      padding: 1px;
+      margin-bottom: 10px;
+      border-radius: 2px;
+      background-color: #e4c308;
+      box-shadow: 0 2px 6px rgba(218, 241, 6, 0.2);
+      display: inline-block;
+      vertical-align: bottom;
+      margin-right: 8px; /* Adds spacing between image and text */
+      height: 80px;        /* Scales image to match text height */
+
+    }
+
+    .badge-frame {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 350px; /* Adjust width as needed */
+      height: 150px; /* Adjust height to match the iframe content */
+      border: none;
+      overflow: hidden;
+    }
+    .status-dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-left: 8px;
+    }
+
+    .online {
+      background-color: #28a745;
+    }
+
+    .offline {
+      background-color: #dc3545;
+    }
+
+
+body {
+  margin: 0;
+  position: relative;
+}
+    footer {
+      margin-top: 40px;
+      font-size: 0.9em;
+      color: #daf106;
+    }
+   #bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  color: white;
+  text-align: center;
+  padding-top: 20vh;
+} 
+  </style>
+<body>
+  <video autoplay muted loop id="bg-video">
+    <source src="images/12487101_1920_1080_25fps.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <h1><img src="images/lablogo2.png" alt="lab logo" class="lablogo"> Lab Dashboard</h1> 
+  <iframe
+    src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=4614018"
+    class="badge-frame"
+  ></iframe>
+<h2><img src="images/platform.png" alt="lab logo" class="sectionlogo"></h2>
+    <div class="grid">
+  <a href="https://pve.home.com:8006/" target="_blank" class="card-link">
+    <div class="proxmox">
+      <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/proxmox-light.png" alt="Proxmox">
+      <div>
+        <h2>Proxmox Virtual Environment</h2>
+        <p>Status: ✅ Online</p>
+      </div>
+    </div>
+  </a>
+<a href="http://192.168.1.5:5000/" target="_blank" class="card-link">
+      <div class="proxmox">
+        <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/synology-dsm.png" alt="TBD">
+        <div>
+          <h2>Synology NAS</h2>
+          <p>Status: ✅ Online</p>
+        </div>
+      </div>
+    </a>
+
+    <a href="http://192.168.1.1/Main_Login.asp" target="_blank" class="card-link">
+      <div class="service">
+        <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/asus.png" alt="TBD">
+        <div>
+          <h2>Asus Router</h2>
+          <p>Status: ✅ Online</p>
+        </div>
+      </div>
+    </a>
+    <a href="https://portainer.home.com:9443/#!/home" target="_blank" class="card-link">
+      <div class="service">
+        <img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/97_Docker_logo_logos-512.png" alt="Pi-hole">
+        <div>
+          <h2>Docker via Portainer</h2>
+          <p>Status: ✅ Active</p>
+        </div>
+      </div>
+    </a>
+    <a href="http://192.168.100.1" target="_blank" class="card-link">
+      <div class="service">
+        <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/pfsense-light.png" alt="pfSense">
+      <div>
+          <h2>PFsense Firewall / Suricata IPS</h2>
+          <p>Status: ✅ Online</p>
+        </div>
+      </div>
+    </a>
+  </div>  
+  
+  <h2><img src="images/services.png" alt="lab logo" class="sectionlogo"> </h2>
+
+  <div class="grid">
+    <a href="http://plex.home.com:32400/web" target="_blank" class="card-link">
+      <div class="service">
+        <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/plex.png" alt="Plex">
+        <div>
+          <h2>Plex Media Server</h2>
+          <p>Status: ✅ Online</p>
+        </div>
+      </div>
+    </a>
+
+    <a href="http://jellyfin.home.com:8096/web/#/home.html" target="_blank" class="card-link">
+      <div class="service">
+        <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/jellyfin.png" alt="Jellyfin">
+        <div>
+          <h2>Jellyfin Media Server</h2>
+          <p>Status: ✅ Online</p>
+        </div>
+      </div>
+    </a>
+
+    <a href="http://pihole.home.com/admin/login" target="_blank" class="card-link">
+      <div class="service">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/00/Pi-hole_Logo.png?20180925041558" alt="Pi-hole">
+        <div>
+          <h2>Pi-hole DNS</h2>
+          <p>Status:  <div class="status-item" id="status-pihole"><span id="dot-pihole"></span> <span id="text-pihole"></span></div></p>
+        </div>
+      </div>
+    </a>
+ <a href="http://192.168.1.49:8080/dashboard/#/" target="_blank" class="card-link">
+      <div class="service">
+        <img src="https://www.gravatar.com/avatar/27caca9bcd7fd7f7412ca5255c9ae2d0?s=120&r=g&d=404" alt="TBD">
+        <div>
+          <h2>Traefik Proxy</h2>
+          <p>Status:⚠️ Offline</p>
+        </div>
+      </div>
+    </a>
+    <a href="https://vault.home.com/#/lock" target="_blank" class="card-link">
+      <div class="service">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Vaultwarden_icon.svg/256px-Vaultwarden_icon.svg.png?20240514103607" alt="Vault">
+        <div>
+          <h2>Vault Warden</h2>
+          <p>Status: ✅ Active</p>
+        </div>
+      </div>
+    </a>
+    <a href="http://uptimek.home.com:3001/dashboard" target="_blank" class="card-link">
+      <div class="service">
+        <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/uptime-kuma.png" alt="Uptime Kuma">
+        <div>
+          <h2>Uptime Kuma</h2>
+          <p>Status: ✅ Active</p>
+        </div>
+      </div>
+    </a>
+  </div>
+ 
+  <div class="grid">
+    <a href="http://tautulli.home.com:8181/home" target="_blank" class="card-link">
+      <div class="service">
+        <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/tautulli.png" alt="Tautulli">
+        <div>
+          <h2>Tautulli</h2>
+          <p>Status: ✅ Active</p>
+        </div>
+      </div>
+    </a>
+
+    <a href="http://splunk.home.com:8000/" target="_blank" class="card-link">
+      <div class="service">
+        <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/splunk.png" alt="Splunk">
+        <div>
+          <h2>Splunk</h2>
+          <p>Status: ✅ Active</p>
+        </div>
+      </div>
+    </a>
+
+    <a href="https://wazuh.home.com/app/login?nextUrl=%2F" target="_blank" class="card-link">
+      <div class="service">
+        <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/wazuh.png" alt="Wazuh">
+        <div>
+          <h2>Wazuh</h2>
+          <p>Status: ✅ Active</p>
+        </div>
+      </div>
+    </a>
+ <a href="http://homeassistant.local:8123/" target="_blank" class="card-link">
+      <div class="service">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/49/Home_Assistant_logo_%282023%29.svg/240px-Home_Assistant_logo_%282023%29.svg.png?20231015162358" alt="TBD">
+        <div>
+          <h2>Home Assistant</h2>
+          <p>Status: ✅ Active</p>
+        </div>
+      </div>
+    </a>
+    <a href="http://ans.home.com/" target="_blank" class="card-link">
+      <div class="service">
+        <img src="https://icon.icepanel.io/Technology/png-shadow-512/Ansible.png" alt="TBD">
+        <div>
+          <h2>Ansible</h2>
+          <p>Status: ✅ Active</p>
+        </div>
+      </div>
+    </a>
+    <a href="http://TBD" target="_blank" class="card-link">
+      <div class="service">
+        <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/kibana.png" alt="TBD">
+        <div>
+          <h2>Kibana</h2>
+          <p>Status: ⚠️ Offline</p>
+        </div>
+      </div>
+    </a>
+  </div>
+  <footer>
+    <p>Last updated: <script>document.write(new Date().toLocaleString());</script></p>
+  </footer>
+<div id="status-dashboard">
+  <div class="status-item" id="status-pihole"><span id="dot-pihole"></span> <span id="text-pihole"></span></div>
+  <div class="status-item" id="status-jellyfin"><span id="dot-jellyfin"></span> <span id="text-jellyfin"></span></div>
+  <div class="status-item" id="status-portainer"><span id="dot-portainer"></span> <span id="text-portainer"></span></div>
+  <div class="status-item" id="status-plex"><span id="dot-plex"></span> <span id="text-plex"></span></div>
+  <div class="status-item" id="status-tautulli"><span id="dot-tautulli"></span> <span id="text-tautulli"></span></div>
+  <div class="status-item" id="status-wazuh"><span id="dot-wazuh"></span> <span id="text-wazuh"></span></div>
+  <div class="status-item" id="status-vaultwarden"><span id="dot-vaultwarden"></span> <span id="text-vaultwarden"></span></div>
+</div>
+<script>
+const monitors = [
+  { id: "1", label: "Pi-hole", domId: "pihole" },
+  { id: "2", label: "Jellyfin", domId: "jellyfin" },
+  { id: "3", label: "Portainer", domId: "portainer" },
+  { id: "4", label: "Plex", domId: "plex" },
+  { id: "5", label: "Tautulli", domId: "tautulli" },
+  { id: "6", label: "Wazuh", domId: "wazuh" },
+  { id: "7", label: "Vault Warden", domId: "vaultwarden" },
+  { id: "8", label: "Splunk", domId: "splunk" }
+];
+
+
+fetch("http://uptimek.home.com:3001/status/db")
+  .then(res => res.json())
+  .then(data => {
+    const heartbeatList = data.heartbeatList;
+
+    monitors.forEach(({ id, label, domId }) => {
+      const latest = heartbeatList[id]?.slice(-1)[0]; // safest way to get the latest
+      const statusText = document.getElementById(`text-${domId}`);
+      const dot = document.getElementById(`dot-${domId}`);
+
+      if (!latest || !statusText || !dot) return;
+
+      const isOnline = latest.status === 1;
+      dot.style.backgroundColor = isOnline ? "green" : "red";
+      dot.style.borderRadius = "50%";
+      dot.style.width = "10px";
+      dot.style.height = "10px";
+      dot.style.display = "inline-block";
+      dot.style.marginRight = "8px";
+
+      statusText.textContent = isOnline
+        ? `✅ ${label} is Active`
+        : `❌ ${label} is Offline`;
+    });
+  })
+  .catch(() => {
+    console.error("Failed to fetch heartbeat data");
+  });
+</script>  
+</body>
+
+</html>
