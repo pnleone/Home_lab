@@ -1,5 +1,5 @@
 
-[linux]
+[lxc-root]
 web.home.com
 plex.home.com
 jellyfin.home.com
@@ -13,8 +13,28 @@ stepca.home.com
 traefik.home.com
 ovrsr.home.com
 
-
-[linux:vars]
+[lxc-root:vars]
 ansible_user=root
 ansible_password=paul1
 
+[lxc-paul]
+
+
+[lxc-root-vars]
+ansible_user=root
+ansible_password=paul1
+
+[vm-paul]
+192.168.1.100
+kali.home.com
+
+[vm-paul:vars]
+ansible_user=paul
+ansible_password=paul
+
+[vm-root]
+splunk.home.com
+
+[vm-root:vars]
+ansible_user=root
+ansible_password=paul1
