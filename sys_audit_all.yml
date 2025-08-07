@@ -1,0 +1,61 @@
+- name: Audit all systems
+  hosts: all
+  vars:
+    needs_become: "{{ 'lxcroot' in group_names or 'vmpaul' in group_names or 'vmpaul1' in group_names }}"
+  become: "{{ needs_become }}"
+
+  tasks:
+    - name: Display hostname and group membership
+      debug:
+        msg: "Running audit on {{ inventory_hostname }} (Groups: {{ group_names }})"
+
+    - name: Check storage space
+      ansible.builtin.shell: df -h
+      register: disk_usage
+
+    - name: Show disk usage
+      ansible.builtin.debug:
+        var: disk_usage.stdout_lines
+
+    - name: Get IP address info
+      ansible.builtin.shell: ip a
+      register: ip_info
+
+    - name: Show IP address info
+      ansible.builtin.debug:
+        var: ip_info.stdout_lines
+
+    - name: Get routing table
+      ansible.builtin.shell: ip r
+      register: route_info
+
+    - name: Show routing table
+      ansible.builtin.debug:
+        var: route_info.stdout_lines
+
+    - name: Get hostname
+      ansible.builtin.shell: hostname
+      register: host_name
+
+    - name: Show hostname
+      ansible.builtin.debug:
+        var: host_name.stdout
+
+    - name: Get nameservers
+      ansible.builtin.shell: cat /etc/resolv.conf
+      register: resolv_conf
+
+    - name: Show nameservers
+      ansible.builtin.debug:
+        var: resolv_conf.stdout_lines
+
+    - name: Get authorized SSH keys
+      ansible.builtin.slurp:
+        src: "{{ ansible_env.HOME }}/.ssh/authorized_keys"
+      register: ssh_keys
+      ignore_errors: true
+
+    - name: Show authorized SSH keys
+      ansible.builtin.debug:
+        msg: "{{ ssh_keys['content'] | b64decode | splitlines }}"
+      when: ssh_keys is defined and ssh_keys['content'] is defined
