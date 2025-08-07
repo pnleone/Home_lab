@@ -12,6 +12,7 @@ wazuh.home.com
 stepca.home.com
 traefik.home.com
 ovrsr.home.com
+192.168.1.93
 
 [lxcroot:vars]
 ansible_user=root
