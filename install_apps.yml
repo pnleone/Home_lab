@@ -1,0 +1,33 @@
+---
+
+- hosts: lxcroot
+  become: false
+  pre_tasks:
+  - name: install updates (CentOS)
+    tags: always
+    dnf:
+      update_only: yes
+      update_cache: yes
+    when: ansible_distribution == "CentOS" 
+
+  - name: install updates (Ubuntu/Debian)
+    tags: always
+    apt:
+      upgrade: dist
+      update_cache: yes
+    when: ansible_distribution in ["Ubuntu", "Debian", "Kali"]
+
+- hosts: vmpaul
+  become: true
+  tasks:
+  - name: install apache and php packages for all dist
+    tags: apache
+    package:
+      name: 
+        - apache2
+        - libapache2-mod-php
+      state: latest
+      
+        
+    
+  

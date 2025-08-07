@@ -1,0 +1,14 @@
+- name: Pre-check sudo access
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Test sudo access
+      command: whoami
+      become: true
+      register: sudo_test
+      ignore_errors: true
+
+    - name: Fail if sudo access is not available
+      fail:
+        msg: "Sudo access failed on {{ inventory_hostname }}. Check user privileges or become settings."
+      when: sudo_test.failed
