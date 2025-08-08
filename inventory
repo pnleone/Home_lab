@@ -32,3 +32,6 @@ splunk.home.com
 [vmpaul1:vars]
 ansible_user=paul
 ansible_password=paul1
+
+[all:vars]
+ansible_python_interpreter=auto_silent

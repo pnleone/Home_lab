@@ -1,14 +1,31 @@
 ---
 
-- hosts: all
+- hosts: lxcroot
   tasks:
 
   - name: install apache and php packages for all dist
+    tags: all
     package:
       name: 
         - "{{ apache_package }}"
         - "{{ php_package }}"
       state: latest
       update_cache: yes
-    
+
+  - name: start httpd
+    tags: centos
+    service:
+      name: httpd
+      state: started
+      enabled: yes
+    when: ansible_distribution in ["CentOS", "RedHat"]
+
+  - name: start apache2    
+    tags: apt
+    service:
+      name: apache2
+      state: started
+      enabled: yes
+    when: ansible_distribution in ["Ubuntu", "Debian"]
+      
   

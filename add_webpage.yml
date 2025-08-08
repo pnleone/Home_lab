@@ -1,13 +1,24 @@
 ---
--  hosts: lxcroot
-   become: false
-   tasks:
+- hosts: vmpaul
+  become: true
+  tasks:
 
-    - name: copy default html file 
-      tags: always
-      copy:
-        src: default_site.html
-        dest: /var/www/html/index.html
-        owner: root
-        group: root
-        mode: 0644
+    - name: Ensure unzip is installed
+      package:
+        name: unzip
+        state: present
+
+    - name: Download Terraform zip
+      get_url:
+        url: https://releases.hashicorp.com/terraform/1.12.2/terraform_1.12.2_linux_amd64.zip
+        dest: /tmp/terraform_1.12.2_linux_amd64.zip
+        mode: '0644'
+
+    - name: Unpack Terraform binary
+      ansible.builtin.unarchive:
+        src: /tmp/terraform_1.12.2_linux_amd64.zip
+        dest: /usr/local/bin
+        remote_src: yes
+        mode: '0755'
+        creates: /usr/local/bin/terraform
+
