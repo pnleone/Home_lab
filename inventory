@@ -1,37 +1,32 @@
 
 [lxcroot]
-web.home.com apache_package=apache2 php_package=libapache2-mod-php
-plex.home.com apache_package=apache2 php_package=libapache2-mod-php
-jellyfin.home.com apache_package=apache2 php_package=libapache2-mod-php
-pihole.home.com apache_package=apache2 php_package=libapache2-mod-php
-bind.home.com apache_package=apache2 php_package=libapache2-mod-php
-unbound.home.com apache_package=apache2 php_package=libapache2-mod-php
-uptimek.home.com apache_package=apache2 php_package=libapache2-mod-php
-vault.home.com apache_package=apache2 php_package=libapache2-mod-php
-wazuh.home.com apache_package=apache2 php_package=libapache2-mod-php
-stepca.home.com apache_package=apache2 php_package=libapache2-mod-php
-traefik.home.com apache_package=apache2 php_package=libapache2-mod-php
-ovrsr.home.com apache_package=apache2 php_package=libapache2-mod-php
-192.168.1.93 apache_package=httpd php_package=php
+web.home.com 
+plex.home.com
+jellyfin.home.com
+pihole.home.com
+bind.home.com
+unbound.home.com
+uptimek.home.com
+vault.home.com
+wazuh.home.com
+stepca.home.com
+traefik.home.com
+ovrsr.home.com
+192.168.1.93
 
 [lxcroot:vars]
-ansible_user=root
+ansible_user=ansible
 ansible_password=paul1
 
-[vmpaul]
+[vmroot]
 192.168.1.126
 kali.home.com
-
-[vmpaul:vars]
-ansible_user=paul
-ansible_password=paul
-
-[vmpaul1]
 splunk.home.com
 
-[vmpaul1:vars]
-ansible_user=paul
+[vmroot:vars]
+ansible_user=ansible
 ansible_password=paul1
+
 
 [all:vars]
 ansible_python_interpreter=auto_silent
