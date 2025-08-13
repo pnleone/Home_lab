@@ -1,0 +1,6 @@
+- name: Restart systemd-resolved (if needed)
+      systemd:
+       olved
+        state name: systemd-res: restarted
+        enabled: yes
+      when: ansible_facts.services['systemd-resolved'] is defined
