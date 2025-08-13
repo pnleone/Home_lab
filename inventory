@@ -13,9 +13,10 @@ stepca.home.com
 traefik.home.com
 ovrsr.home.com
 192.168.1.93
+192.168.1.246
 
 [lxcroot:vars]
-ansible_user=ansible
+ansible_user=root
 ansible_password=paul1
 
 [vmroot]

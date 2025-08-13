@@ -2,7 +2,7 @@
 - name: Audit system info
   hosts: all
   gather_facts: yes
-  become: false
+  become: true
 
   tasks:
 
@@ -47,12 +47,13 @@
         var: resolv_conf.stdout_lines
 
     - name: Get authorized SSH keys
+      become: true
       ansible.builtin.slurp:
-        src: /root/.ssh/authorized_keys
+        src: /home/ansible/.ssh/authorized_keys
       register: ssh_keys
       ignore_errors: true
 
     - name: Show authorized SSH keys
       ansible.builtin.debug:
-        msg: "{{ ssh_keys['content'] | b64decode | splitlines }}"
+        msg: "{{ ssh_keys['content'] | b64decode | split('\n') }}"
       when: ssh_keys is defined and ssh_keys['content'] is defined
