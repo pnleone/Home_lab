@@ -16,8 +16,8 @@ ovrsr.home.com
 192.168.1.246
 
 [lxcroot:vars]
-ansible_user=root
-ansible_password=paul1
+ansible_user=
+ansible_password=
 
 [vmroot]
 192.168.1.126
@@ -25,8 +25,8 @@ kali.home.com
 splunk.home.com
 
 [vmroot:vars]
-ansible_user=ansible
-ansible_password=paul1
+ansible_user=
+ansible_password=
 
 
 [all:vars]
